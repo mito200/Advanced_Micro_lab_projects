@@ -1,0 +1,9 @@
+0.7
+2020.1
+May 27 2020
+20:09:33
+F:/My_sem_10/VGA_Controller/VGA_Controller.sim/sim_1/behav/xsim/glbl.v,1590624368,verilog,,,,glbl,,,,,,,,
+F:/My_sem_10/VGA_Controller/VGA_Controller.srcs/sim_1/new/VGA_TB.vhd,1708766757,vhdl,,,,vga_module_tb,,,,,,,,
+F:/My_sem_10/VGA_Controller/VGA_Controller.srcs/sources_1/ip/blk_mem_gen_0_1/sim/blk_mem_gen_0.v,1708687096,verilog,,,,blk_mem_gen_0,,,,,,,,
+F:/My_sem_10/VGA_Controller/VGA_Controller.srcs/sources_1/new/VGA_IMAGE.vhd,1708766578,vhdl,,,,vga_image,,,,,,,,
+F:/My_sem_10/VGA_Controller/VGA_Controller.srcs/sources_1/new/VGA_Module.vhd,1708456160,vhdl,,,,vga_module,,,,,,,,
