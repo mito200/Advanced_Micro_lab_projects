@@ -38,10 +38,10 @@ entity VGA_IMAGE is
     reset : in std_logic;
     Rin,Gin,Bin: in std_logic;
     R,G,B: out std_logic_vector(3 downto 0) ;
-    hsync,vsync:out std_logic;
-    clk_out,flag:out std_logic;
-    dout1: out std_logic_vector(0 downto 0);
-    addr:out std_logic_vector(18 downto 0));
+    hsync,vsync:out std_logic);
+    --clk_out,flag:out std_logic;
+    --dout1: out std_logic_vector(0 downto 0);
+    --addr:out std_logic_vector(18 downto 0));
 end VGA_IMAGE;
 
 architecture Behavioral of VGA_IMAGE is
@@ -65,9 +65,9 @@ signal address:std_logic_vector(18 downto 0):=(others => '0');
 signal dout:std_logic_vector(0 downto 0);
 
 begin
-addr <= address;
-clk_out<=clk_out1;
-dout1 <= dout;
+--addr <= address;
+--clk_out<=clk_out1;
+--dout1 <= dout;
 hsync <= hsyn;
 vsync<=vsyn;
 mem0: blk_mem_gen_0 port map(clka => clk_out1,wea =>(others => '0'),addra => address,dina => (others => '0'),douta =>dout);
@@ -79,7 +79,7 @@ mem0: blk_mem_gen_0 port map(clka => clk_out1,wea =>(others => '0'),addra => add
 --    end if;
 --end process;
 
-flag<=vdisplay and hdisplay;
+--flag<=vdisplay and hdisplay;
 
 clocking:process (clk)
 variable count:integer := 0;
@@ -97,6 +97,7 @@ end process;
 
 scan_line:process(clk_out1,reset)
     constant TFP: integer:= 16;
+    constant TDISP300 : integer:= 300;
     constant TDISP : integer:= 640;
     constant TPW:  integer:=96;
     constant TBP: integer:=48;
@@ -109,7 +110,7 @@ begin
     elsif rising_edge(clk_out1) then
         
         Hcount := Hcount+1;
-        if (Hcount = TDISP ) then
+        if (Hcount = TDISP300 ) then
             hdisplay <= '0';
         end if;
         if (Hcount = TDISP+TFP ) then
@@ -142,7 +143,8 @@ end process;
 
 process(clk_out1,reset)
     constant TFP: integer:= 8000;
-    constant TDISP : integer:= 384000;
+    constant TDISP300 : integer:= 240000;
+    constant TDISP: integer:= 384000;
     constant TPW:  integer:= 1600;
     constant TBP: integer:= 26400;
     variable Vcount : integer:= 0;
@@ -153,7 +155,7 @@ begin
         vdisplay <= '1';
     elsif rising_edge(clk_out1) then
         Vcount := Vcount+1;
-        if (Vcount = TDISP ) then
+        if (Vcount = TDISP300 ) then
             vdisplay <= '0';
         end if;
         if (Vcount = TDISP+TFP ) then
@@ -174,45 +176,50 @@ begin
     
     end if;
 end process;
-process(vdisplay,hdisplay,reset,clk_out1)
+process(vdisplay,hdisplay,reset)--,clk_out1)
 --const int ivVal[] = {33, 44, 55, 66};
+variable hcount: integer:=0;
+variable vcount: integer:=0;
 begin
 if (vdisplay='1' and hdisplay='1' and reset ='0' )then --and rising_edge(clk_out1)) then
-                    if (dout = "1") then
-                        R<= "1111";
-                        G<= "1111";
-                        B<= "1111";
+--                    if (vcount<300) then
+--                        if (hcount <300) then
+                        
+--                    if rising_edge(clk_out1) then
+                    
+--                        if (dout = "1") then
+--                            R<= dout(11 downto 8);
+--                            G<= dout(7 downto 4);
+--                            B<= dout(3 downto 0);
                       
-                    else 
-                        R<= "0000";
-                        G<= "0000";
-                        B<= "0000";
+--                        else
+                        
+--                        address <= address+1;
+--                        if(address="1001010111111111111") then
+--                            address <= (others => '0');
+--                        end if;
+--                   end if;     
+                    if (Rin = '1') then
+                        R <= "1111";
+                    elsif (Rin = '0') then
+                        R <= "0000";
                     end if;
-                    address <= address+1;
-                    if(address="1001011000000000000") then
-                        address <= (others => '0');
+-----------------------GREEN-------------------------------------------------------
+                    if (Gin = '1') then
+                        G <= "1111";
+                    elsif (Gin = '0') then
+                        G <= "0000";
                     end if;
---                    if (Rin = '1') then
---                        R <= "1111";
---                    elsif (Rin = '0') then
---                        R <= "0000";
---                    end if;
--------------------------GREEN-------------------------------------------------------
---                    if (Gin = '1') then
---                        G <= "1111";
---                    elsif (Gin = '0') then
---                        G <= "0000";
---                    end if;
--------------------------BLUE--------------------------------------------------------
---                    if (Bin = '1') then
---                        B <= "1111";
---                    elsif (Bin = '0') then
---                        B <= "0000";
---                    end if;
---ELSE
---                r <= (others => '0'); 
---                g <= (others => '0'); 
---                b <= (others => '0'); 
+-----------------------BLUE--------------------------------------------------------
+                    if (Bin = '1') then
+                        B <= "1111";
+                    elsif (Bin = '0') then
+                        B <= "0000";
+                    end if;
+ELSE
+                r <= (others => '0'); 
+                g <= (others => '0'); 
+                b <= (others => '0'); 
 end if ;
 end process;
 end Behavioral;
