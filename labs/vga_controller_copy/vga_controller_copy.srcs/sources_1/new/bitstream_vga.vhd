@@ -60,8 +60,8 @@ END component;
 
 
 signal clk_out1: std_logic:='1';
-signal hsyn,vsyn:std_logic;
-signal vdisplay,hdisplay:std_logic;
+signal hsyn,vsyn:std_logic:='1';
+signal vdisplay,hdisplay:std_logic:='1';
 signal address:std_logic_vector(16 downto 0):=(others => '0');
 signal dout:std_logic_vector(11 downto 0);
 
@@ -100,30 +100,32 @@ scan_line:process(clk_out1,reset)
     constant TBP: integer:=48;
     variable Hcount : integer:=0;
 begin   
-    if (reset ='1') then
-        Hcount := 0;
-        hsyn <= '1';
-        hdisplay <= '1';
-    elsif rising_edge(clk_out1) then
-        
-        Hcount := Hcount+1;
-        if (Hcount = TDISP300 ) then
-            hdisplay <= '0';
-        end if;
-        if (Hcount = TDISP+TFP ) then
-            hsyn <= '0';
-        end if;
-        if (Hcount = TDISP+TFP+TPW) then
-            hsyn <= '1';
-        end if;
-
-        if (Hcount = TFP+TPW+TBP+TDISP) then
+    if rising_edge(clk_out1) then
+        if (reset = '1') then
             Hcount := 0;
-            hsyn <='1';
+            hsyn <= '1';
             hdisplay <= '1';
-            
-        END IF;
-
+        else
+  
+        
+            Hcount := Hcount+1;
+            if (Hcount = TDISP300 ) then
+                hdisplay <= '0';
+            end if;
+            if (Hcount = TDISP+TFP ) then
+                hsyn <= '0';
+            end if;
+            if (Hcount = TDISP+TFP+TPW) then
+                hsyn <= '1';
+            end if;
+    
+            if (Hcount = TFP+TPW+TBP+TDISP) then
+                Hcount := 0;
+                hsyn <='1';
+                hdisplay <= '1';
+                
+            END IF;
+        end if;
     end if;
 end process;
 
@@ -136,30 +138,31 @@ process(clk_out1,reset)
     constant TBP: integer:= 26400;
     variable Vcount : integer:= 0;
 begin
-    if (reset ='1') then
-        Vcount := 0;
-        vsyn <= '1';
-        vdisplay <= '1';
-    elsif rising_edge(clk_out1) then
-        Vcount := Vcount+1;
-        if (Vcount = TVDISP300 ) then
-            vdisplay <= '0';
-        end if;
-        if (Vcount = TDISP+TFP ) then
-            vsyn <= '0';
-        end if;
-        if (Vcount = TDISP+TFP+TPW) then
-            vsyn <= '1';
-        end if;
- 
-        
-        if (Vcount = TFP+TPW+TBP+TDISP) then
-            Vdisplay <= '1';
+    if rising_edge(clk_out1) then
+        if (reset = '1') then
             Vcount := 0;
-            vsyn <='1';
+            vsyn <= '1';
+            vdisplay <= '1';
+        else
+            Vcount := Vcount+1;
+            if (Vcount = TVDISP300 ) then
+                vdisplay <= '0';
+            end if;
+            if (Vcount = TDISP+TFP ) then
+                vsyn <= '0';
+            end if;
+            if (Vcount = TDISP+TFP+TPW) then
+                vsyn <= '1';
+            end if;
+     
             
-        END IF;
-    
+            if (Vcount = TFP+TPW+TBP+TDISP) then
+                Vdisplay <= '1';
+                Vcount := 0;
+                vsyn <='1';
+                
+            END IF;
+        end if;
     end if;
 end process;
 process(vdisplay,hdisplay,reset,clk_out1)
@@ -168,7 +171,9 @@ variable hcount: integer:=0;
 variable vcount: integer:=0;
 variable upper: integer:=90000;
 begin
-if (vdisplay='1' and hdisplay='1' and reset ='0' )then --and rising_edge(clk_out1)) then
+if reset ='1' then
+    address <= (others => '0');
+elsif (vdisplay='1' and hdisplay='1' and reset ='0' )then --and rising_edge(clk_out1)) then
 --                    
                         
     if rising_edge(clk_out1) then
