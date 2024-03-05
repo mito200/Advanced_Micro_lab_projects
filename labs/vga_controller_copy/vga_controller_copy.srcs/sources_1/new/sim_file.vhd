@@ -33,20 +33,19 @@ use ieee.numeric_std.all;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity VGA_IMAGE_stream is
+entity VGA_IMAGE_move_sim is
     Port ( clk : in STD_LOGIC;
     reset : in std_logic;
-    Rin,Gin,Bin: in std_logic;
-    move:in std_logic_vector(1 downto 0);
+    ---Rin,Gin,Bin: in std_logic;
     R,G,B: out std_logic_vector(3 downto 0) ;
-    hsync,vsync:out std_logic);
-    --clk_out,
-    --flag:out std_logic;
-    --dout1: out std_logic_vector(0 downto 0);
-    --addr:out std_logic_vector(16 downto 0));
-end VGA_IMAGE_stream;
+    hsync,vsync:out std_logic;
+    clk_out: out std_logic;
+    dout1: out std_logic_vector(11 downto 0);
+    addr:out std_logic_vector(16 downto 0);
+    vdisp,hdisp: out std_logic);
+end VGA_IMAGE_move_sim;
 
-architecture Behavioral of VGA_IMAGE_stream is
+architecture Behavioral of VGA_IMAGE_move_sim is
 
 
 component blk_mem_gen_0 IS
@@ -68,11 +67,11 @@ signal dout:std_logic_vector(11 downto 0);
 
 begin
 
---addr <= address;
---vdisp <= vdisplay;
---hdisp <= hdisplay;
---clk_out<=clk_out1;
-
+addr <= address;
+vdisp <= vdisplay;
+hdisp <= hdisplay;
+clk_out<=clk_out1;
+dout1 <= dout;
 hsync <= hsyn;
 vsync<=vsyn;
 mem0: blk_mem_gen_0 port map(clka => clk_out1,wea =>(others => '0'),addra => address,dina => (others => '0'),douta =>dout);
@@ -106,6 +105,7 @@ begin
             Hcount := 0;
             hsyn <= '1';
             hdisplay <= '1';
+           
         else
   
         
@@ -138,24 +138,16 @@ process(clk_out1,reset)
     constant TPW:  integer:= 1600;
     constant TBP: integer:= 26400;
     variable Vcount : integer:= 0;
-    variable upper_v: integer:= 240000;--here modifying
-    variable lower_v: integer:=0;
-    variable upper_h: integer:= 300;
-    variable lower_h: integer:= 0;
 begin
     if rising_edge(clk_out1) then
         if (reset = '1') then
             Vcount := 0;
             vsyn <= '1';
             vdisplay <= '1';
-            upper_v:=240000;
-            lower_v:=0;
+         
         else
             Vcount := Vcount+1;
-            if (Vcount > lower_v) and (Vcount < upper_v) then
-                vdisplay <= '1';
-            end if;
-            if (Vcount = upper_v ) then
+            if (Vcount = TVDISP300 ) then
                 vdisplay <= '0';
             end if;
             if (Vcount = TDISP+TFP ) then
@@ -167,19 +159,8 @@ begin
      
             
             if (Vcount = TFP+TPW+TBP+TDISP) then
-                
+                Vdisplay <= '1';
                 Vcount := 0;
-                if (move = "10")then
-                    upper_v:=upper_v+800;
-                    lower_v:=lower_v+800;
-                end if;
-                if (upper_v = 384800) then
-                    upper_v:=240000;
-                    lower_v:=0;
-                end if;
-                if (lower_v=0) then
-                    vdisplay <='1';
-                end if;
                 vsyn <='1';
                 
             END IF;
