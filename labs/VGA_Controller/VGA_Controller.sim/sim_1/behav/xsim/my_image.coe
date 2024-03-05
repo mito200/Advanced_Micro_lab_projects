@@ -1,5 +1,5 @@
-MEMORY_INITIALIZATION_RADIX=16;
-MEMORY_INITIALIZATION_VECTOR=
+memory_initialization_radix=2;
+memory_initialization_vector=
 1,
 0,
 1,

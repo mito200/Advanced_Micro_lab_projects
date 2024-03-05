@@ -95,22 +95,30 @@ end process;
 
 scan_line:process(clk_out1,reset)
     constant TFP: integer:= 16;
-    constant TDISP300 : integer:= 300;
+    
     constant TDISP : integer:= 640;
+    variable h_upper:integer:=300;
+    variable h_lower:integer:=0;
     constant TPW:  integer:=96;
     constant TBP: integer:=48;
     variable Hcount : integer:=0;
+    variable screencount: integer := 0;
 begin   
     if rising_edge(clk_out1) then
         if (reset = '1') then
             Hcount := 0;
             hsyn <= '1';
             hdisplay <= '1';
+            screencount := 0;
+            h_upper:=300;
+            h_lower:=0;
         else
   
-        
+            screencount:=screencount+1;
             Hcount := Hcount+1;
-            if (Hcount = TDISP300 ) then
+            if (hcount >= h_lower) and (hcount < h_upper) then
+                hdisplay <= '1';
+            else
                 hdisplay <= '0';
             end if;
             if (Hcount = TDISP+TFP ) then
@@ -123,8 +131,19 @@ begin
             if (Hcount = TFP+TPW+TBP+TDISP) then
                 Hcount := 0;
                 hsyn <='1';
-                hdisplay <= '1';
                 
+                if(move = "01")and (screencount>=525*800) then
+                    screencount:=0;
+                    h_upper:=h_upper+1;
+                    h_lower:=h_lower+1;                    
+                end if;
+                if (h_upper = 641) then
+                    h_upper:=300;
+                    h_lower:=0;
+                end if;
+                if (h_lower=0) then
+                    hdisplay <='1';
+                end if;
             END IF;
         end if;
     end if;
@@ -152,10 +171,9 @@ begin
             lower_v:=0;
         else
             Vcount := Vcount+1;
-            if (Vcount > lower_v) and (Vcount < upper_v) then
+            if (Vcount >= lower_v) and (Vcount < upper_v) then
                 vdisplay <= '1';
-            end if;
-            if (Vcount = upper_v ) then
+            else
                 vdisplay <= '0';
             end if;
             if (Vcount = TDISP+TFP ) then
@@ -186,6 +204,7 @@ begin
         end if;
     end if;
 end process;
+
 process(vdisplay,hdisplay,reset,clk_out1)
 --const int ivVal[] = {33, 44, 55, 66};
 variable hcount: integer:=0;

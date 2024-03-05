@@ -24,7 +24,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='F:/My_sem_10/VGA_Controller/VGA_Controller.runs/blk_mem_gen_0_synth_1'
+HD_PWD='F:/My_sem_10/sem10_my_material/MICRO_LAB/labs/VGA_Controller/VGA_Controller.runs/blk_mem_gen_0_synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

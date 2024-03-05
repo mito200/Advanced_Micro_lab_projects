@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "F:/My_sem_10/VGA_Controller/VGA_Controller.runs/synth_1/VGA_IMAGE.tcl"
+  variable script "F:/My_sem_10/sem10_my_material/MICRO_LAB/labs/VGA_Controller/VGA_Controller.runs/synth_1/VGA_IMAGE.tcl"
   variable category "vivado_synth"
 }
 
@@ -79,21 +79,22 @@ set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
 set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity info
-set_property webtalk.parent_dir F:/My_sem_10/VGA_Controller/VGA_Controller.cache/wt [current_project]
-set_property parent.project_path F:/My_sem_10/VGA_Controller/VGA_Controller.xpr [current_project]
+set_property webtalk.parent_dir F:/My_sem_10/sem10_my_material/MICRO_LAB/labs/VGA_Controller/VGA_Controller.cache/wt [current_project]
+set_property parent.project_path F:/My_sem_10/sem10_my_material/MICRO_LAB/labs/VGA_Controller/VGA_Controller.xpr [current_project]
 set_property XPM_LIBRARIES XPM_MEMORY [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
 set_property board_part digilentinc.com:basys3:part0:1.2 [current_project]
-set_property ip_output_repo f:/My_sem_10/VGA_Controller/VGA_Controller.cache/ip [current_project]
+set_property ip_output_repo f:/My_sem_10/sem10_my_material/MICRO_LAB/labs/VGA_Controller/VGA_Controller.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 add_files c:/Users/MARTEL/Desktop/my_image.coe
 add_files c:/Users/MARTEL/Desktop/coefile.coe
-read_vhdl -library xil_defaultlib F:/My_sem_10/VGA_Controller/VGA_Controller.srcs/sources_1/new/VGA_IMAGE.vhd
-read_ip -quiet f:/My_sem_10/VGA_Controller/VGA_Controller.srcs/sources_1/ip/blk_mem_gen_0_1/blk_mem_gen_0.xci
-set_property used_in_implementation false [get_files -all f:/My_sem_10/VGA_Controller/VGA_Controller.srcs/sources_1/ip/blk_mem_gen_0_1/blk_mem_gen_0_ooc.xdc]
+add_files c:/Users/MARTEL/Downloads/image33.coe
+read_vhdl -library xil_defaultlib F:/My_sem_10/sem10_my_material/MICRO_LAB/labs/VGA_Controller/VGA_Controller.srcs/sources_1/new/VGA_IMAGE.vhd
+read_ip -quiet F:/My_sem_10/sem10_my_material/MICRO_LAB/labs/VGA_Controller/VGA_Controller.srcs/sources_1/ip/blk_mem_gen_0_1/blk_mem_gen_0.xci
+set_property used_in_implementation false [get_files -all f:/My_sem_10/sem10_my_material/MICRO_LAB/labs/VGA_Controller/VGA_Controller.srcs/sources_1/ip/blk_mem_gen_0_1/blk_mem_gen_0_ooc.xdc]
 
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being

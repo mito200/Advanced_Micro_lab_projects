@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2020.1 (64-bit)
+# SW Build 2902540 on Wed May 27 19:54:49 MDT 2020
+# IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
+# Start of session at: Mon Feb 26 21:07:04 2024
+# Process ID: 21908
+# Current directory: F:/My_sem_10/sem10_my_material/MICRO_LAB/labs/VGA_Controller/VGA_Controller.runs/impl_1
+# Command line: vivado.exe -log VGA_IMAGE.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source VGA_IMAGE.tcl -notrace
+# Log file: F:/My_sem_10/sem10_my_material/MICRO_LAB/labs/VGA_Controller/VGA_Controller.runs/impl_1/VGA_IMAGE.vdi
+# Journal file: F:/My_sem_10/sem10_my_material/MICRO_LAB/labs/VGA_Controller/VGA_Controller.runs/impl_1\vivado.jou
+#-----------------------------------------------------------
+source VGA_IMAGE.tcl -notrace

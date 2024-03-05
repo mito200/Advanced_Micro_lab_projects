@@ -41,8 +41,8 @@ end VGA_Module;
 
 architecture Behavioral of VGA_Module is
 signal clk_out1: std_logic:='1';
-signal hsyn,vsyn:std_logic;
-signal vdisplay,hdisplay:std_logic;
+signal hsyn,vsyn:std_logic:='1';
+signal vdisplay,hdisplay:std_logic:='1';
 begin
 
 
@@ -88,13 +88,13 @@ begin
         if (Hcount = TDISP+TFP+TPW) then
             hsyn <= '1';
         end if;
-        if (Hcount = TFP+TPW+TBP+TDISP-1) then
-            
-            hdisplay <= '1';
-        END IF;
+        if (Hcount = TFP+TPW+TBP+TDISP) then
+            hdisplay <='1'; 
+        end if;
         if (Hcount = TFP+TPW+TBP+TDISP) then
             Hcount := 0;
             hsyn <='1';
+            
             
         END IF;
 --        if (Hcount = +TFP+TPW+TBP) then
@@ -133,9 +133,8 @@ begin
             vsyn <= '1';
         end if;
         if (Vcount = TFP+TPW+TBP+TDISP-1) then
-            
-            vdisplay <= '1';
-        END IF;
+            vdisplay <='1'; 
+        end if;
         if (Vcount = TFP+TPW+TBP+TDISP) then
             Vcount := 0;
             vsyn <='1';
@@ -171,4 +170,3 @@ ELSE
 end if ;
 end process;
 end Behavioral;
-
