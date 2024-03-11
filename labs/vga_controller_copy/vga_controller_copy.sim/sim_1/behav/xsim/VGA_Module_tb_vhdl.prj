@@ -1,6 +1,6 @@
 # compile vhdl design source files
 vhdl xil_defaultlib  \
-"../../../../vga_controller_copy.srcs/sources_1/new/sim_file.vhd" \
+"../../../../vga_controller_copy.srcs/sim_1/new/vga_image_stream_sim.vhd" \
 "../../../../../VGA_Controller/VGA_Controller.srcs/sim_1/new/VGA_TB.vhd" \
 
 # Do not sort compile order

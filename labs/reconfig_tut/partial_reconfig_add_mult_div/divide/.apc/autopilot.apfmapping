@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
+  <source>
+    <originFiles name="divide.cpp" path="C:\Users\MARTEL\AppData\Roaming\Xilinx\Vivado\4_bit_adder\divide.cpp"/>
+    <originFiles name="divide.h" path="C:\Users\MARTEL\AppData\Roaming\Xilinx\Vivado\4_bit_adder\divide.h"/>
+  </source>
+  <testbench/>
+</autopilotfilemapping:AutoPilotFileMapping>

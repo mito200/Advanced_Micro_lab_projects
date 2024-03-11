@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2020.1 (64-bit)
+# SW Build 2902540 on Wed May 27 19:54:49 MDT 2020
+# IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
+# Start of session at: Mon Mar 11 11:07:01 2024
+# Process ID: 25516
+# Current directory: F:/My_sem_10/sem10_my_material/MICRO_LAB/labs/reconfig_tut/partial_reconfig_add_mult_div/partial_reconfig_add_mult_div.runs/synth_1
+# Command line: vivado.exe -log top_module.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source top_module.tcl
+# Log file: F:/My_sem_10/sem10_my_material/MICRO_LAB/labs/reconfig_tut/partial_reconfig_add_mult_div/partial_reconfig_add_mult_div.runs/synth_1/top_module.vds
+# Journal file: F:/My_sem_10/sem10_my_material/MICRO_LAB/labs/reconfig_tut/partial_reconfig_add_mult_div/partial_reconfig_add_mult_div.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source top_module.tcl -notrace

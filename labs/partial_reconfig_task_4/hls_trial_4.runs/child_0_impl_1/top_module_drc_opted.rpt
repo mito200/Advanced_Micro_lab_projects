@@ -1,0 +1,62 @@
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2020.1 (win64) Build 2902540 Wed May 27 19:54:49 MDT 2020
+| Date         : Mon Mar 11 20:25:07 2024
+| Host         : Martel running 64-bit major release  (build 9200)
+| Command      : report_drc -file top_module_drc_opted.rpt -pb top_module_drc_opted.pb -rpx top_module_drc_opted.rpx
+| Design       : top_module
+| Device       : xc7a35tcpg236-1
+| Speed File   : -1
+| Design State : Synthesized
+---------------------------------------------------------------------------------------------------------------------
+
+Report DRC
+
+Table of Contents
+-----------------
+1. REPORT SUMMARY
+2. REPORT DETAILS
+
+1. REPORT SUMMARY
+-----------------
+            Netlist: netlist
+          Floorplan: design_1
+      Design limits: <entire design considered>
+           Ruledeck: default
+             Max violations: <unlimited>
+             Violations found: 2
++----------+------------------+-----------------------------------------------------+------------+
+| Rule     | Severity         | Description                                         | Violations |
++----------+------------------+-----------------------------------------------------+------------+
+| RTSTAT-3 | Critical Warning | Unplaced terminals on nets                          | 1          |
+| CFGBVS-1 | Warning          | Missing CFGBVS and CONFIG_VOLTAGE Design Properties | 1          |
++----------+------------------+-----------------------------------------------------+------------+
+
+2. REPORT DETAILS
+-----------------
+RTSTAT-3#1 Critical Warning
+Unplaced terminals on nets  
+46 net(s) have unplaced terminals. The problem bus(es) and/or net(s) are A_V_IBUF[3:0], B_V_IBUF[3:0], divide1/GND_HD_Inserted_Net_div_or_mult,
+divide1/HD_PR_RouteThrough_InsertedNet_ap_done,
+divide1/HD_PR_RouteThrough_InsertedNet_ap_ready,
+divide1/HD_PR_RouteThrough_InsertedNet_result_V_ap_vld,
+divide1/VCC_HD_Inserted_Net_ap_idle, ap_clk_IBUF_BUFG, ap_rst_IBUF,
+ap_start_IBUF, divide1/result_V[7:0], divide1/result_V[0]_INST_0_i_1_n_0,
+divide1/result_V[0]_INST_0_i_2_n_0, divide1/result_V[0]_INST_0_i_3_n_0,
+divide1/result_V[0]_INST_0_i_4_n_0 (the first 15 of 31 listed), GLOBAL_LOGIC0, GLOBAL_LOGIC1.
+Related violations: <none>
+
+CFGBVS-1#1 Warning
+Missing CFGBVS and CONFIG_VOLTAGE Design Properties  
+Neither the CFGBVS nor CONFIG_VOLTAGE voltage property is set in the current_design.  Configuration bank voltage select (CFGBVS) must be set to VCCO or GND, and CONFIG_VOLTAGE must be set to the correct configuration voltage, in order to determine the I/O voltage support for the pins in bank 0.  It is suggested to specify these either using the 'Edit Device Properties' function in the GUI or directly in the XDC file using the following syntax:
+
+ set_property CFGBVS value1 [current_design]
+ #where value1 is either VCCO or GND
+
+ set_property CONFIG_VOLTAGE value2 [current_design]
+ #where value2 is the voltage provided to configuration bank 0
+
+Refer to the device configuration user guide for more information.
+Related violations: <none>
+
+

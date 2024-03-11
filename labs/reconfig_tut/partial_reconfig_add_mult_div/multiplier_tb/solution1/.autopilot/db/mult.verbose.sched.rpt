@@ -1,0 +1,116 @@
+
+
+================================================================
+== Vivado HLS Report for 'mult'
+================================================================
+* Date:           Sun Mar 10 22:10:58 2024
+
+* Version:        2020.1 (Build 2897737 on Wed May 27 20:21:37 MDT 2020)
+* Project:        multiplier_tb
+* Solution:       solution1
+* Product family: virtex7
+* Target device:  xc7vx485t-ffg1157-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  | 10.00 ns | 1.470 ns |   1.25 ns  |
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        0|        0|   0 ns   |   0 ns   |    0|    0|   none  |
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 0
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 1
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 1.47>
+ST_1 : Operation 2 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i4 %A_V), !map !30"   --->   Operation 2 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 3 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i4 %B_V), !map !36"   --->   Operation 3 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 4 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i8* %result_V), !map !40"   --->   Operation 4 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 5 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecTopModule([5 x i8]* @mult_str) nounwind"   --->   Operation 5 'spectopmodule' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 6 [1/1] (0.00ns)   --->   "%B_V_read = call i4 @_ssdm_op_Read.ap_auto.i4(i4 %B_V)" [multiplier_tb/mult.cpp:2]   --->   Operation 6 'read' 'B_V_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%A_V_read = call i4 @_ssdm_op_Read.ap_auto.i4(i4 %A_V)" [multiplier_tb/mult.cpp:2]   --->   Operation 7 'read' 'A_V_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%lhs_V = zext i4 %A_V_read to i8" [multiplier_tb/mult.cpp:3]   --->   Operation 8 'zext' 'lhs_V' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%rhs_V = zext i4 %B_V_read to i8" [multiplier_tb/mult.cpp:3]   --->   Operation 9 'zext' 'rhs_V' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 10 [1/1] (1.47ns)   --->   "%ret_V = mul i8 %rhs_V, %lhs_V" [multiplier_tb/mult.cpp:3]   --->   Operation 10 'mul' 'ret_V' <Predicate = true> <Delay = 1.47> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 1.47> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "call void @_ssdm_op_Write.ap_auto.i8P(i8* %result_V, i8 %ret_V)" [multiplier_tb/mult.cpp:3]   --->   Operation 11 'write' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "ret void" [multiplier_tb/mult.cpp:4]   --->   Operation 12 'ret' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 1.25ns.
+
+ <State 1>: 1.47ns
+The critical path consists of the following:
+	wire read on port 'B_V' (multiplier_tb/mult.cpp:2) [8]  (0 ns)
+	'mul' operation ('ret.V', multiplier_tb/mult.cpp:3) [12]  (1.47 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

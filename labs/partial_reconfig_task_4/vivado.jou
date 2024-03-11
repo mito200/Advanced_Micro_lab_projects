@@ -1,0 +1,14 @@
+#-----------------------------------------------------------
+# Vivado v2020.1 (64-bit)
+# SW Build 2902540 on Wed May 27 19:54:49 MDT 2020
+# IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
+# Start of session at: Mon Mar 11 23:39:29 2024
+# Process ID: 28448
+# Current directory: F:/My_sem_10/sem10_my_material/MICRO_LAB/labs/partial_reconfig_task_4
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent20772 F:\My_sem_10\sem10_my_material\MICRO_LAB\labs\partial_reconfig_task_4\hls_trial_4.xpr
+# Log file: F:/My_sem_10/sem10_my_material/MICRO_LAB/labs/partial_reconfig_task_4/vivado.log
+# Journal file: F:/My_sem_10/sem10_my_material/MICRO_LAB/labs/partial_reconfig_task_4\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project F:/My_sem_10/sem10_my_material/MICRO_LAB/labs/partial_reconfig_task_4/hls_trial_4.xpr
+update_compile_order -fileset sources_1

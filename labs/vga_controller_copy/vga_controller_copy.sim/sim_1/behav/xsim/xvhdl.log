@@ -1,2 +1,2 @@
-INFO: [VRFC 10-163] Analyzing VHDL file "F:/My_sem_10/sem10_my_material/MICRO_LAB/labs/VGA_Controller/VGA_Controller.srcs/sim_1/new/VGA_TB.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'VGA_Module_tb'
+INFO: [VRFC 10-163] Analyzing VHDL file "F:/My_sem_10/sem10_my_material/MICRO_LAB/labs/vga_controller_copy/vga_controller_copy.srcs/sim_1/new/vga_image_stream_sim.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'VGA_IMAGE_stream_sim'

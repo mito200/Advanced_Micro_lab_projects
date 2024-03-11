@@ -157,25 +157,43 @@ process(clk_out1,reset)
     constant TPW:  integer:= 1600;
     constant TBP: integer:= 26400;
     variable Vcount : integer:= 0;
-    variable upper_v: integer:= 240000;--here modifying
-    variable lower_v: integer:=0;
-    variable upper_h: integer:= 300;
-    variable lower_h: integer:= 0;
+    variable upper_top_v: integer:= 0;--here modifying
+    variable lower_top_v: integer:=0;
+    variable upper_bottom_v: integer:= 240000;--here modifying
+    variable lower_bottom_v: integer:=0;
+    variable split_screen : boolean:=false;
+    variable accessed : boolean:=false;
 begin
     if rising_edge(clk_out1) then
         if (reset = '1') then
             Vcount := 0;
             vsyn <= '1';
             vdisplay <= '1';
-            upper_v:=240000;
-            lower_v:=0;
+            upper_bottom_v:=240000;
+            lower_bottom_v:=0;
+            upper_top_v:=0;
+            lower_top_v:=0;
+            split_screen :=false;
+            accessed:=false;
         else
             Vcount := Vcount+1;
-            if (Vcount >= lower_v) and (Vcount < upper_v) then
+            if (Vcount >= lower_bottom_v) and (Vcount < upper_bottom_v) then
+                if split_screen = true then
+                    accessed := true;
+                end if;    
                 vdisplay <= '1';
-            else
+            end if;
+            if (accessed = true) and(Vcount>=lower_top_v and Vcount<upper_top_v) then
+                vdisplay <= '1';
+            end if;
+            if (accessed = true) and (Vcount = upper_top_v)then
+                accessed := false;
+                vdisplay <= '0'; 
+            end if;
+            if (Vcount = upper_bottom_v) then
                 vdisplay <= '0';
             end if;
+
             if (Vcount = TDISP+TFP ) then
                 vsyn <= '0';
             end if;
@@ -188,14 +206,23 @@ begin
                 
                 Vcount := 0;
                 if (move = "10")then
-                    upper_v:=upper_v+800;
-                    lower_v:=lower_v+800;
+                    upper_bottom_v:=upper_bottom_v+800;
+                    lower_bottom_v:=lower_bottom_v+800;
+                    
+                    if (upper_bottom_v > 384000) then
+                        upper_bottom_v:=384000;
+                        upper_top_v:=upper_top_v+800;
+                        split_screen:=true;
+                        if upper_top_v = 240000 then
+                            upper_bottom_v:=upper_top_v;
+                            lower_bottom_v:=0;
+                            split_screen:=false;
+                        end if;
+                    end if;
+                        
                 end if;
-                if (upper_v = 384800) then
-                    upper_v:=240000;
-                    lower_v:=0;
-                end if;
-                if (lower_v=0) then
+             
+                if (lower_bottom_v=0) or (lower_top_v=0 and upper_top_v>0)then
                     vdisplay <='1';
                 end if;
                 vsyn <='1';

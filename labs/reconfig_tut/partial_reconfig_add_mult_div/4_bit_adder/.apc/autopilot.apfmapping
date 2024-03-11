@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
+  <source>
+    <originFiles name="adder.cpp" path="C:\Users\MARTEL\AppData\Roaming\Xilinx\Vivado\4_bit_adder\adder.cpp"/>
+    <originFiles name="adder.h" path="C:\Users\MARTEL\AppData\Roaming\Xilinx\Vivado\4_bit_adder\adder.h"/>
+    <originFiles name="divide.cpp" path="C:\Users\MARTEL\AppData\Roaming\Xilinx\Vivado\4_bit_adder\divide.cpp"/>
+    <originFiles name="divide.h" path="C:\Users\MARTEL\AppData\Roaming\Xilinx\Vivado\4_bit_adder\divide.h"/>
+    <originFiles name="mult.cpp" path="C:\Users\MARTEL\AppData\Roaming\Xilinx\Vivado\multiplier_tb\mult.cpp"/>
+    <originFiles name="mult.h" path="C:\Users\MARTEL\AppData\Roaming\Xilinx\Vivado\multiplier_tb\mult.h"/>
+  </source>
+  <testbench>
+    <originFiles name="add_tb.cpp" path="C:\Users\MARTEL\AppData\Roaming\Xilinx\Vivado\4_bit_adder\add_tb.cpp"/>
+  </testbench>
+</autopilotfilemapping:AutoPilotFileMapping>

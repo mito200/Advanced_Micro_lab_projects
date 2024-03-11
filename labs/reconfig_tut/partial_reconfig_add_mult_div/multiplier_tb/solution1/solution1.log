@@ -1,0 +1,49 @@
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2020.1 (64-bit)
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+WARNING: [HLS 200-40] Cannot find library 'C:/Xilinx/Vivado/2020.1/common/technology/xilinx/Virtex-7/Virtex-7.lib'.
+WARNING: [HLS 200-40] Cannot find library 'xilinx/Virtex-7/Virtex-7'.
+WARNING: [HLS 200-40] Cannot find library 'C:/Xilinx/Vivado/2020.1/common/technology/xilinx/Virtex-7/Virtex-7_fpv7.lib'.
+WARNING: [HLS 200-40] Cannot find library 'xilinx/Virtex-7/Virtex-7_fpv7'.
+INFO: [HLS 200-10] Setting target device to 'xc7vx485t-ffg1157-1'
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'multiplier_tb/mult.cpp' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:02 ; elapsed = 00:00:10 . Memory (MB): peak = 934.719 ; gain = 841.039
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:02 ; elapsed = 00:00:10 . Memory (MB): peak = 934.719 ; gain = 841.039
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:02 ; elapsed = 00:00:10 . Memory (MB): peak = 934.719 ; gain = 841.039
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:02 ; elapsed = 00:00:10 . Memory (MB): peak = 934.719 ; gain = 841.039
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:02 ; elapsed = 00:00:10 . Memory (MB): peak = 934.719 ; gain = 841.039
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:02 ; elapsed = 00:00:10 . Memory (MB): peak = 934.719 ; gain = 841.039
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'mult' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'mult' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 10.596 seconds; current allocated memory: 103.801 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.116 seconds; current allocated memory: 103.853 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'mult' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'mult/A_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'mult/B_V' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'mult/result_V' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'mult' to 'ap_ctrl_hs'.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'mult'.
+INFO: [HLS 200-111]  Elapsed time: 0.091 seconds; current allocated memory: 103.945 MB.
+INFO: [HLS 200-789] **** Estimated Fmax: 680.27 MHz
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:03 ; elapsed = 00:00:12 . Memory (MB): peak = 934.719 ; gain = 841.039
+INFO: [VHDL 208-304] Generating VHDL RTL for mult.
+INFO: [VLOG 209-307] Generating Verilog RTL for mult.
+INFO: [HLS 200-112] Total elapsed time: 11.629 seconds; peak allocated memory: 103.945 MB.

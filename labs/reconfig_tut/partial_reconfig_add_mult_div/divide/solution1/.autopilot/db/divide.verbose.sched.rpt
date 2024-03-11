@@ -1,0 +1,178 @@
+
+
+================================================================
+== Vivado HLS Report for 'divide'
+================================================================
+* Date:           Sun Mar 10 22:12:35 2024
+
+* Version:        2020.1 (Build 2897737 on Wed May 27 20:21:37 MDT 2020)
+* Project:        divide
+* Solution:       solution1
+* Product family: virtex7
+* Target device:  xc7vx485t-ffg1157-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  | 10.00 ns | 1.927 ns |   1.25 ns  |
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+-----+-----+---------+
+    |  Latency (cycles) |   Latency (absolute)  |  Interval | Pipeline|
+    |   min   |   max   |    min    |    max    | min | max |   Type  |
+    +---------+---------+-----------+-----------+-----+-----+---------+
+    |        7|        7| 70.000 ns | 70.000 ns |    7|    7|   none  |
+    +---------+---------+-----------+-----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 8
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 5 
+5 --> 6 
+6 --> 7 
+7 --> 8 
+8 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 1.92>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%B_V_read = call i4 @_ssdm_op_Read.ap_auto.i4(i4 %B_V)" [4_bit_adder/divide.cpp:2]   --->   Operation 9 'read' 'B_V_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%A_V_read = call i4 @_ssdm_op_Read.ap_auto.i4(i4 %A_V)" [4_bit_adder/divide.cpp:2]   --->   Operation 10 'read' 'A_V_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 11 [8/8] (1.92ns)   --->   "%ret_V = udiv i4 %A_V_read, %B_V_read" [4_bit_adder/divide.cpp:3]   --->   Operation 11 'udiv' 'ret_V' <Predicate = true> <Delay = 1.92> <Core = "DivnS_SEQ">   --->   Core 24 'DivnS_SEQ' <Latency = 7> <II = 4> <Delay = 1.92> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 2 <SV = 1> <Delay = 1.92>
+ST_2 : Operation 12 [7/8] (1.92ns)   --->   "%ret_V = udiv i4 %A_V_read, %B_V_read" [4_bit_adder/divide.cpp:3]   --->   Operation 12 'udiv' 'ret_V' <Predicate = true> <Delay = 1.92> <Core = "DivnS_SEQ">   --->   Core 24 'DivnS_SEQ' <Latency = 7> <II = 4> <Delay = 1.92> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 3 <SV = 2> <Delay = 1.92>
+ST_3 : Operation 13 [6/8] (1.92ns)   --->   "%ret_V = udiv i4 %A_V_read, %B_V_read" [4_bit_adder/divide.cpp:3]   --->   Operation 13 'udiv' 'ret_V' <Predicate = true> <Delay = 1.92> <Core = "DivnS_SEQ">   --->   Core 24 'DivnS_SEQ' <Latency = 7> <II = 4> <Delay = 1.92> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 4 <SV = 3> <Delay = 1.92>
+ST_4 : Operation 14 [5/8] (1.92ns)   --->   "%ret_V = udiv i4 %A_V_read, %B_V_read" [4_bit_adder/divide.cpp:3]   --->   Operation 14 'udiv' 'ret_V' <Predicate = true> <Delay = 1.92> <Core = "DivnS_SEQ">   --->   Core 24 'DivnS_SEQ' <Latency = 7> <II = 4> <Delay = 1.92> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 5 <SV = 4> <Delay = 1.92>
+ST_5 : Operation 15 [4/8] (1.92ns)   --->   "%ret_V = udiv i4 %A_V_read, %B_V_read" [4_bit_adder/divide.cpp:3]   --->   Operation 15 'udiv' 'ret_V' <Predicate = true> <Delay = 1.92> <Core = "DivnS_SEQ">   --->   Core 24 'DivnS_SEQ' <Latency = 7> <II = 4> <Delay = 1.92> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 6 <SV = 5> <Delay = 1.92>
+ST_6 : Operation 16 [3/8] (1.92ns)   --->   "%ret_V = udiv i4 %A_V_read, %B_V_read" [4_bit_adder/divide.cpp:3]   --->   Operation 16 'udiv' 'ret_V' <Predicate = true> <Delay = 1.92> <Core = "DivnS_SEQ">   --->   Core 24 'DivnS_SEQ' <Latency = 7> <II = 4> <Delay = 1.92> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 7 <SV = 6> <Delay = 1.92>
+ST_7 : Operation 17 [2/8] (1.92ns)   --->   "%ret_V = udiv i4 %A_V_read, %B_V_read" [4_bit_adder/divide.cpp:3]   --->   Operation 17 'udiv' 'ret_V' <Predicate = true> <Delay = 1.92> <Core = "DivnS_SEQ">   --->   Core 24 'DivnS_SEQ' <Latency = 7> <II = 4> <Delay = 1.92> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+
+State 8 <SV = 7> <Delay = 1.92>
+ST_8 : Operation 18 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i4 %A_V), !map !30"   --->   Operation 18 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 19 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i4 %B_V), !map !36"   --->   Operation 19 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 20 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i8* %result_V), !map !40"   --->   Operation 20 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 21 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecTopModule([7 x i8]* @divide_str) nounwind"   --->   Operation 21 'spectopmodule' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 22 [1/8] (1.92ns)   --->   "%ret_V = udiv i4 %A_V_read, %B_V_read" [4_bit_adder/divide.cpp:3]   --->   Operation 22 'udiv' 'ret_V' <Predicate = true> <Delay = 1.92> <Core = "DivnS_SEQ">   --->   Core 24 'DivnS_SEQ' <Latency = 7> <II = 4> <Delay = 1.92> <FuncUnit> <Opcode : 'sdiv' 'srem' 'udiv' 'urem'> <InPorts = 2> <OutPorts = 1>
+ST_8 : Operation 23 [1/1] (0.00ns)   --->   "%zext_ln209 = zext i4 %ret_V to i8" [4_bit_adder/divide.cpp:3]   --->   Operation 23 'zext' 'zext_ln209' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 24 [1/1] (0.00ns)   --->   "call void @_ssdm_op_Write.ap_auto.i8P(i8* %result_V, i8 %zext_ln209)" [4_bit_adder/divide.cpp:3]   --->   Operation 24 'write' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 25 [1/1] (0.00ns)   --->   "ret void" [4_bit_adder/divide.cpp:4]   --->   Operation 25 'ret' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 1.25ns.
+
+ <State 1>: 1.93ns
+The critical path consists of the following:
+	wire read on port 'B_V' (4_bit_adder/divide.cpp:2) [8]  (0 ns)
+	'udiv' operation ('ret.V', 4_bit_adder/divide.cpp:3) [10]  (1.93 ns)
+
+ <State 2>: 1.93ns
+The critical path consists of the following:
+	'udiv' operation ('ret.V', 4_bit_adder/divide.cpp:3) [10]  (1.93 ns)
+
+ <State 3>: 1.93ns
+The critical path consists of the following:
+	'udiv' operation ('ret.V', 4_bit_adder/divide.cpp:3) [10]  (1.93 ns)
+
+ <State 4>: 1.93ns
+The critical path consists of the following:
+	'udiv' operation ('ret.V', 4_bit_adder/divide.cpp:3) [10]  (1.93 ns)
+
+ <State 5>: 1.93ns
+The critical path consists of the following:
+	'udiv' operation ('ret.V', 4_bit_adder/divide.cpp:3) [10]  (1.93 ns)
+
+ <State 6>: 1.93ns
+The critical path consists of the following:
+	'udiv' operation ('ret.V', 4_bit_adder/divide.cpp:3) [10]  (1.93 ns)
+
+ <State 7>: 1.93ns
+The critical path consists of the following:
+	'udiv' operation ('ret.V', 4_bit_adder/divide.cpp:3) [10]  (1.93 ns)
+
+ <State 8>: 1.93ns
+The critical path consists of the following:
+	'udiv' operation ('ret.V', 4_bit_adder/divide.cpp:3) [10]  (1.93 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

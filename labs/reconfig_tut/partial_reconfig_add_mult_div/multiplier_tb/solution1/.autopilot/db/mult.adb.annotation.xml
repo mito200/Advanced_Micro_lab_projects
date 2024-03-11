@@ -1,0 +1,7 @@
+<annotationInfo>
+<annotationInfo>
+<item  id="10" filename="multiplier_tb/mult.cpp" linenumber="3" name="lhs_V" contextFuncName="mult" moduleName="mult" rtlName="ret_V_fu_43_p10" latency="0" BRAM="-1" DSP="-1" FF="-1" LUT="-1" fileDirectory="C:\Users\MARTEL\AppData\Roaming\Xilinx\Vivado"><\/item>
+<item  id="11" filename="multiplier_tb/mult.cpp" linenumber="3" name="rhs_V" contextFuncName="mult" moduleName="mult" rtlName="ret_V_fu_43_p00" latency="0" BRAM="-1" DSP="-1" FF="-1" LUT="-1" fileDirectory="C:\Users\MARTEL\AppData\Roaming\Xilinx\Vivado"><\/item>
+<item  id="12" filename="multiplier_tb/mult.cpp" linenumber="3" name="ret_V" contextFuncName="mult" moduleName="mult" rtlName="result_V" latency="0" BRAM="-1" DSP="0" FF="0" LUT="13" fileDirectory="C:\Users\MARTEL\AppData\Roaming\Xilinx\Vivado"><\/item>
+<\/annotationInfo>
+</annotationInfo>

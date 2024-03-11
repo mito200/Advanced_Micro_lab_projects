@@ -1,0 +1,43 @@
+
+*** Running vivado
+    with args -log top_module.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source top_module.tcl
+
+
+
+****** Vivado v2020.1 (64-bit)
+  **** SW Build 2902540 on Wed May 27 19:54:49 MDT 2020
+  **** IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
+    ** Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+
+source top_module.tcl -notrace
+Command: synth_design -top top_module -part xc7a35tcpg236-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
+INFO: [Device 21-403] Loading part xc7a35tcpg236-1
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 26696
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1043.547 ; gain = 11.156
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'top_module' [F:/My_sem_10/sem10_my_material/MICRO_LAB/labs/reconfig_tut/partial_reconfig_add_mult_div/partial_reconfig_add_mult_div.srcs/sources_1/new/top_module.vhd:54]
+INFO: [Synth 8-3491] module 'add' declared at 'C:/Users/MARTEL/AppData/Roaming/Xilinx/Vivado/4_bit_adder/solution1/impl/vhdl/add.vhd:12' bound to instance 'add1' of component 'add' [F:/My_sem_10/sem10_my_material/MICRO_LAB/labs/reconfig_tut/partial_reconfig_add_mult_div/partial_reconfig_add_mult_div.srcs/sources_1/new/top_module.vhd:82]
+INFO: [Synth 8-638] synthesizing module 'add' [C:/Users/MARTEL/AppData/Roaming/Xilinx/Vivado/4_bit_adder/solution1/impl/vhdl/add.vhd:25]
+INFO: [Synth 8-256] done synthesizing module 'add' (1#1) [C:/Users/MARTEL/AppData/Roaming/Xilinx/Vivado/4_bit_adder/solution1/impl/vhdl/add.vhd:25]
+INFO: [Synth 8-3491] module 'divide' declared at 'F:/My_sem_10/sem10_my_material/MICRO_LAB/labs/reconfig_tut/partial_reconfig_add_mult_div/partial_reconfig_add_mult_div.runs/synth_1/.Xil/Vivado-25516-Martel/realtime/divide_stub.v:5' bound to instance 'divide1' of component 'divide' [F:/My_sem_10/sem10_my_material/MICRO_LAB/labs/reconfig_tut/partial_reconfig_add_mult_div/partial_reconfig_add_mult_div.srcs/sources_1/new/top_module.vhd:83]
+INFO: [Synth 8-6157] synthesizing module 'divide' [F:/My_sem_10/sem10_my_material/MICRO_LAB/labs/reconfig_tut/partial_reconfig_add_mult_div/partial_reconfig_add_mult_div.runs/synth_1/.Xil/Vivado-25516-Martel/realtime/divide_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'divide' (2#1) [F:/My_sem_10/sem10_my_material/MICRO_LAB/labs/reconfig_tut/partial_reconfig_add_mult_div/partial_reconfig_add_mult_div.runs/synth_1/.Xil/Vivado-25516-Martel/realtime/divide_stub.v:5]
+ERROR: [Synth 8-485] no port 'div_or_mult' on instance [F:/My_sem_10/sem10_my_material/MICRO_LAB/labs/reconfig_tut/partial_reconfig_add_mult_div/partial_reconfig_add_mult_div.srcs/sources_1/new/top_module.vhd:83]
+ERROR: [Synth 8-485] no port 'div_or_mult' on instance [F:/My_sem_10/sem10_my_material/MICRO_LAB/labs/reconfig_tut/partial_reconfig_add_mult_div/partial_reconfig_add_mult_div.srcs/sources_1/new/top_module.vhd:83]
+ERROR: [Synth 8-485] no port 'div_or_mult' on instance [F:/My_sem_10/sem10_my_material/MICRO_LAB/labs/reconfig_tut/partial_reconfig_add_mult_div/partial_reconfig_add_mult_div.srcs/sources_1/new/top_module.vhd:67]
+ERROR: [Synth 8-285] failed synthesizing module 'top_module' [F:/My_sem_10/sem10_my_material/MICRO_LAB/labs/reconfig_tut/partial_reconfig_add_mult_div/partial_reconfig_add_mult_div.srcs/sources_1/new/top_module.vhd:54]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1092.805 ; gain = 60.414
+---------------------------------------------------------------------------------
+RTL Elaboration failed
+INFO: [Common 17-83] Releasing license: Synthesis
+13 Infos, 0 Warnings, 0 Critical Warnings and 5 Errors encountered.
+synth_design failed
+ERROR: [Common 17-69] Command failed: Synthesis failed - please see the console or run log file for details
+INFO: [Common 17-206] Exiting Vivado at Mon Mar 11 11:07:35 2024...

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="VGA_Module_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="VGA_Module_tb" />
+            <top_module name="glbl" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="48999998fs"></ZoomStartTime>
+      <ZoomEndTime time="49000001fs"></ZoomEndTime>
+      <Cursor1Time time="49000000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="383"></NameColumnWidth>
+      <ValueColumnWidth column_width="187"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="25" />
+   <wvobject fp_name="/VGA_Module_tb/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/VGA_Module_tb/reset" type="logic">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/VGA_Module_tb/clk_out" type="logic">
+      <obj_property name="ElementShortName">clk_out</obj_property>
+      <obj_property name="ObjectShortName">clk_out</obj_property>
+   </wvobject>
+   <wvobject fp_name="/VGA_Module_tb/hsync" type="logic">
+      <obj_property name="ElementShortName">hsync</obj_property>
+      <obj_property name="ObjectShortName">hsync</obj_property>
+   </wvobject>
+   <wvobject fp_name="/VGA_Module_tb/vsync" type="logic">
+      <obj_property name="ElementShortName">vsync</obj_property>
+      <obj_property name="ObjectShortName">vsync</obj_property>
+   </wvobject>
+   <wvobject fp_name="/VGA_Module_tb/flag" type="logic">
+      <obj_property name="ElementShortName">flag</obj_property>
+      <obj_property name="ObjectShortName">flag</obj_property>
+   </wvobject>
+   <wvobject fp_name="/VGA_Module_tb/vdisp" type="logic">
+      <obj_property name="ElementShortName">vdisp</obj_property>
+      <obj_property name="ObjectShortName">vdisp</obj_property>
+   </wvobject>
+   <wvobject fp_name="/VGA_Module_tb/hdisp" type="logic">
+      <obj_property name="ElementShortName">hdisp</obj_property>
+      <obj_property name="ObjectShortName">hdisp</obj_property>
+   </wvobject>
+   <wvobject fp_name="/VGA_Module_tb/addr" type="array">
+      <obj_property name="ElementShortName">addr[16:0]</obj_property>
+      <obj_property name="ObjectShortName">addr[16:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/VGA_Module_tb/RGB_out" type="array">
+      <obj_property name="ElementShortName">RGB_out[11:0]</obj_property>
+      <obj_property name="ObjectShortName">RGB_out[11:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/VGA_Module_tb/move" type="array">
+      <obj_property name="ElementShortName">move[1:0]</obj_property>
+      <obj_property name="ObjectShortName">move[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/VGA_Module_tb/dout1" type="array">
+      <obj_property name="ElementShortName">dout1[11:0]</obj_property>
+      <obj_property name="ObjectShortName">dout1[11:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/VGA_Module_tb/R" type="array">
+      <obj_property name="ElementShortName">R[3:0]</obj_property>
+      <obj_property name="ObjectShortName">R[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/VGA_Module_tb/G" type="array">
+      <obj_property name="ElementShortName">G[3:0]</obj_property>
+      <obj_property name="ObjectShortName">G[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/VGA_Module_tb/B" type="array">
+      <obj_property name="ElementShortName">B[3:0]</obj_property>
+      <obj_property name="ObjectShortName">B[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/VGA_Module_tb/stop_the_clock" type="other">
+      <obj_property name="ElementShortName">stop_the_clock</obj_property>
+      <obj_property name="ObjectShortName">stop_the_clock</obj_property>
+   </wvobject>
+   <wvobject fp_name="/VGA_Module_tb/Rin" type="logic">
+      <obj_property name="ElementShortName">Rin</obj_property>
+      <obj_property name="ObjectShortName">Rin</obj_property>
+   </wvobject>
+   <wvobject fp_name="/VGA_Module_tb/Gin" type="logic">
+      <obj_property name="ElementShortName">Gin</obj_property>
+      <obj_property name="ObjectShortName">Gin</obj_property>
+   </wvobject>
+   <wvobject fp_name="/VGA_Module_tb/Bin" type="logic">
+      <obj_property name="ElementShortName">Bin</obj_property>
+      <obj_property name="ObjectShortName">Bin</obj_property>
+   </wvobject>
+   <wvobject fp_name="/VGA_Module_tb/RGB" type="array">
+      <obj_property name="ElementShortName">RGB[2:0]</obj_property>
+      <obj_property name="ObjectShortName">RGB[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/VGA_Module_tb/clock_period" type="other">
+      <obj_property name="ElementShortName">clock_period</obj_property>
+      <obj_property name="ObjectShortName">clock_period</obj_property>
+   </wvobject>
+   <wvobject fp_name="/VGA_Module_tb/uut/upper_top_v_s" type="array">
+      <obj_property name="ElementShortName">upper_top_v_s[16:0]</obj_property>
+      <obj_property name="ObjectShortName">upper_top_v_s[16:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/VGA_Module_tb/uut/lower_top_v_s" type="array">
+      <obj_property name="ElementShortName">lower_top_v_s[16:0]</obj_property>
+      <obj_property name="ObjectShortName">lower_top_v_s[16:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/VGA_Module_tb/uut/upper_bottom_v_s" type="array">
+      <obj_property name="ElementShortName">upper_bottom_v_s[16:0]</obj_property>
+      <obj_property name="ObjectShortName">upper_bottom_v_s[16:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/VGA_Module_tb/uut/lower_bottom_v_s" type="array">
+      <obj_property name="ElementShortName">lower_bottom_v_s[16:0]</obj_property>
+      <obj_property name="ObjectShortName">lower_bottom_v_s[16:0]</obj_property>
+   </wvobject>
+</wave_config>
