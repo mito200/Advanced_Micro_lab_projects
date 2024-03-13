@@ -58,15 +58,30 @@ component blk_mem_gen_0 IS
     douta : OUT STD_LOGIC_VECTOR(11 DOWNTO 0)
   );
 END component;
-
+component blk_mem_gen_1 IS
+  PORT (
+    clka : IN STD_LOGIC;
+    ena : IN STD_LOGIC;
+    wea : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
+    addra : IN STD_LOGIC_VECTOR(10 DOWNTO 0);
+    dina : IN STD_LOGIC_VECTOR(11 DOWNTO 0);
+    douta : OUT STD_LOGIC_VECTOR(11 DOWNTO 0)
+  );
+END component;
 
 signal clk_out1: std_logic:='1';
 signal hsyn,vsyn:std_logic:='1';
 signal vdisplay,hdisplay:std_logic:='1';
 signal address:std_logic_vector(16 downto 0):=(others => '0');
+signal car_address:std_logic_vector(10 downto 0):=(others => '0');
 signal dout:std_logic_vector(11 downto 0); 
+signal dout_car:std_logic_vector(11 downto 0);
+
+
+----------
 shared variable Vcount: integer:= 0;
 shared variable upper_v_up: integer:=0;
+shared variable Hcount : integer:=0;
 -- shared variable Vcount:= 0;
 begin
 
@@ -78,7 +93,7 @@ begin
 hsync <= hsyn;
 vsync<=vsyn;
 mem0: blk_mem_gen_0 port map(clka => clk_out1,wea =>(others => '0'),addra => address,dina => (others => '0'),douta =>dout);
-
+mem1: blk_mem_gen_1 port map(clka => clk_out1,wea =>(others => '0'),ena => '0',addra => car_address,dina => (others => '0'),douta =>dout_car);
 --flag<=vdisplay and hdisplay;
 
 clocking:process (clk)
@@ -99,7 +114,7 @@ scan_line:process(clk_out1,reset)
     constant TFP: integer:= 16;
     
     constant TDISP : integer:= 640; 
-    variable h_upper:integer:=300;--width of my photo
+    variable h_upper:integer:=250;--width of my photo
     variable h_lower:integer:=0;
     constant TPW:  integer:=96;
     constant TBP: integer:=48;
@@ -161,9 +176,9 @@ process(clk_out1,reset)
     -- variable Vcount : integer:= 0;
     -- variable upper_v_up: integer:=0;
    
-    variable upper_v_down: integer:= 240000;--here modifying
+    variable upper_v_down: integer:= TDISP;--here modifying
     variable lower_v_down: integer:=0;
-
+    
     variable lower_v_up: integer:=0;
 begin
     if rising_edge(clk_out1) then
@@ -173,7 +188,7 @@ begin
             vdisplay <= '1';
             upper_v_up:=0;
             lower_v_up:=0;
-            upper_v_down:=240000;
+            upper_v_down:=TDISP;
             lower_v_down:=0;
         else
             Vcount := Vcount+1;
@@ -196,7 +211,7 @@ begin
                     upper_v_up:=upper_v_up+800;
                 end if;
     
-                if upper_v_up = 240000 then
+                if upper_v_up = 384000 then
                     upper_v_down:=upper_v_up;
                     lower_v_down:=lower_v_up;
                     upper_v_up:=0;
@@ -223,13 +238,14 @@ process(vdisplay,hdisplay,reset,clk_out1)
 --const int ivVal[] = {33, 44, 55, 66};
 variable counter:integer:=0;
 variable split_screen:boolean:=false;
-
+variable max_address:integer:=119999;
+variable image_width:integer:=250;
 begin
 
 if reset ='1' then
     address <= (others => '0');
 elsif vcount > 384000+1600+26400 and upper_v_up>0 then
-    counter :=(89999-((upper_v_up/800)*300));
+    counter :=(max_address-((upper_v_up/800)*image_width));
     address <= std_logic_vector(to_unsigned(counter,address'length));
 elsif (vdisplay='1' and hdisplay='1' and reset ='0' )then --and rising_edge(clk_out1)) then
 --                    
@@ -238,7 +254,7 @@ elsif (vdisplay='1' and hdisplay='1' and reset ='0' )then --and rising_edge(clk_
      
                    address <= address+1;
 ----             
-                   if (unsigned(address) >= "10101111110001111") then
+                   if (unsigned(address) >= "11101010010111111") then --address >= 119999(max address
 ----                   report("weselt");
                         address <= (others => '0');
             
