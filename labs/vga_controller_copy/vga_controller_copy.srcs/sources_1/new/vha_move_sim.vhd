@@ -53,7 +53,7 @@ component blk_mem_gen_0 IS
   PORT (
     clka : IN STD_LOGIC;
     wea : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
-    addra : IN STD_LOGIC_VECTOR (16 DOWNTO 0);
+    addra : IN STD_LOGIC_VECTOR (16 DOWNTO 0);  
     dina : IN STD_LOGIC_VECTOR(11 DOWNTO 0);
     douta : OUT STD_LOGIC_VECTOR(11 DOWNTO 0)
   );
@@ -64,8 +64,10 @@ signal clk_out1: std_logic:='1';
 signal hsyn,vsyn:std_logic:='1';
 signal vdisplay,hdisplay:std_logic:='1';
 signal address:std_logic_vector(16 downto 0):=(others => '0');
-signal dout:std_logic_vector(11 downto 0);
-
+signal dout:std_logic_vector(11 downto 0); 
+shared variable Vcount: integer:= 0;
+shared variable upper_v_up: integer:=0;
+-- shared variable Vcount:= 0;
 begin
 
 --addr <= address;
@@ -96,8 +98,8 @@ end process;
 scan_line:process(clk_out1,reset)
     constant TFP: integer:= 16;
     
-    constant TDISP : integer:= 640;
-    variable h_upper:integer:=300;
+    constant TDISP : integer:= 640; 
+    variable h_upper:integer:=300;--width of my photo
     variable h_lower:integer:=0;
     constant TPW:  integer:=96;
     constant TBP: integer:=48;
@@ -156,73 +158,58 @@ process(clk_out1,reset)
     constant TDISP: integer:= 384000;
     constant TPW:  integer:= 1600;
     constant TBP: integer:= 26400;
-    variable Vcount : integer:= 0;
-    variable upper_top_v: integer:= 0;--here modifying
-    variable lower_top_v: integer:=0;
-    variable upper_bottom_v: integer:= 240000;--here modifying
-    variable lower_bottom_v: integer:=0;
-    variable split_screen : boolean:=false;
-    variable accessed : boolean:=false;
+    -- variable Vcount : integer:= 0;
+    -- variable upper_v_up: integer:=0;
+   
+    variable upper_v_down: integer:= 240000;--here modifying
+    variable lower_v_down: integer:=0;
+
+    variable lower_v_up: integer:=0;
 begin
     if rising_edge(clk_out1) then
         if (reset = '1') then
             Vcount := 0;
             vsyn <= '1';
             vdisplay <= '1';
-            upper_bottom_v:=240000;
-            lower_bottom_v:=0;
-            upper_top_v:=0;
-            lower_top_v:=0;
-            split_screen :=false;
-            accessed:=false;
+            upper_v_up:=0;
+            lower_v_up:=0;
+            upper_v_down:=240000;
+            lower_v_down:=0;
         else
             Vcount := Vcount+1;
-            if (Vcount >= lower_bottom_v) and (Vcount < upper_bottom_v) then
-                if split_screen = true then
-                    accessed := true;
-                end if;    
+            if ( Vcount >= lower_v_up and Vcount < upper_v_up and upper_v_up > 0)or(Vcount >= lower_v_down and Vcount < upper_v_down) then
                 vdisplay <= '1';
-            end if;
-            if (accessed = true) and(Vcount>=lower_top_v and Vcount<upper_top_v) then
-                vdisplay <= '1';
-            end if;
-            if (accessed = true) and (Vcount = upper_top_v)then
-                accessed := false;
-                vdisplay <= '0'; 
-            end if;
-            if (Vcount = upper_bottom_v) then
+            else
                 vdisplay <= '0';
             end if;
-
             if (Vcount = TDISP+TFP ) then
                 vsyn <= '0';
             end if;
             if (Vcount = TDISP+TFP+TPW) then
                 vsyn <= '1';
+                if (move = "10")then
+                    upper_v_down:=upper_v_down+800;
+                    lower_v_down:=lower_v_down+800;
+                end if;
+                if (upper_v_down = 384800) then
+                    upper_v_down:=384000;
+                    upper_v_up:=upper_v_up+800;
+                end if;
+    
+                if upper_v_up = 240000 then
+                    upper_v_down:=upper_v_up;
+                    lower_v_down:=lower_v_up;
+                    upper_v_up:=0;
+                    lower_v_up:=0;
+                end if;
             end if;
      
             
             if (Vcount = TFP+TPW+TBP+TDISP) then
                 
                 Vcount := 0;
-                if (move = "10")then
-                    upper_bottom_v:=upper_bottom_v+800;
-                    lower_bottom_v:=lower_bottom_v+800;
-                    
-                    if (upper_bottom_v > 384000) then
-                        upper_bottom_v:=384000;
-                        upper_top_v:=upper_top_v+800;
-                        split_screen:=true;
-                        if upper_top_v = 240000 then
-                            upper_bottom_v:=upper_top_v;
-                            lower_bottom_v:=0;
-                            split_screen:=false;
-                        end if;
-                    end if;
-                        
-                end if;
-             
-                if (lower_bottom_v=0) or (lower_top_v=0 and upper_top_v>0)then
+
+                if (lower_v_down=0) or (lower_v_up =0 and upper_v_up > 0) then
                     vdisplay <='1';
                 end if;
                 vsyn <='1';
@@ -234,12 +221,16 @@ end process;
 
 process(vdisplay,hdisplay,reset,clk_out1)
 --const int ivVal[] = {33, 44, 55, 66};
-variable hcount: integer:=0;
-variable vcount: integer:=0;
-variable upper: integer:=90000;
+variable counter:integer:=0;
+variable split_screen:boolean:=false;
+
 begin
+
 if reset ='1' then
     address <= (others => '0');
+elsif vcount > 384000+1600+26400 and upper_v_up>0 then
+    counter :=(89999-((upper_v_up/800)*300));
+    address <= std_logic_vector(to_unsigned(counter,address'length));
 elsif (vdisplay='1' and hdisplay='1' and reset ='0' )then --and rising_edge(clk_out1)) then
 --                    
                         
@@ -247,7 +238,7 @@ elsif (vdisplay='1' and hdisplay='1' and reset ='0' )then --and rising_edge(clk_
      
                    address <= address+1;
 ----             
-                   if (unsigned(address) >= "10101111110001111") or (vcount = 90000) then
+                   if (unsigned(address) >= "10101111110001111") then
 ----                   report("weselt");
                         address <= (others => '0');
             
@@ -281,7 +272,7 @@ ELSE
                 r <= (others => '0'); 
                 g <= (others => '0'); 
                 b <= (others => '0'); 
+             
 end if ;
 end process;
 end Behavioral;
-
